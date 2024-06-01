@@ -62,20 +62,17 @@ ota_update_file="${ROM}_${DEVICE}-signed-ota_update.zip"
 # Remove Previous target files if they exist
 if [ -e "$target_files" ]; then
     rm -rf "$target_files"
-    echo -e "${RED}Removed $target_files${NC}"
+    echo -e "${RED}Removed Previous $target_files${NC}"
 else
-    echo -e "${RED}$target_files does not exist${NC}"
+    echo -e "${RED}Previous $target_files does not exist${NC}"
 fi
 
 if [ -e "$ota_update_file" ]; then
     rm -rf "$ota_update_file"
-    echo -e "${RED}Removed $ota_update_file${NC}"
+    echo -e "${RED}Removed Previous $ota_update_file${NC}"
 else
-    echo -e "${RED}$ota_update_file does not exist${NC}"
+    echo -e "${RED}Previous $ota_update_file does not exist${NC}"
 fi
-
-echo
-echo -e "${RED}Removing Previous target files (${target_files} & ${ota_update_file})...${NC}"
 
 # Sign the target files apks
 echo
