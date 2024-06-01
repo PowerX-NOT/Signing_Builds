@@ -11,6 +11,9 @@ RED='\033[0;31m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
+UROM=$(echo "$ROM" | tr '[:lower:]' '[:upper:]')
+echo -e "${RED}Building $UROM :)${NC}"
+
 # Function to handle errors
 handle_error() {
     echo
@@ -49,6 +52,11 @@ fi
 
 m installclean
 
+# Get Build VERSION
+ROM_VERSION="${UROM}_VERSION"
+Build_VERSION="$(get_build_var $ROM_VERSION)"
+echo -e "${RED}ROM_VERSION: $Build_VERSION...${NC}"
+
 # Build the target files package and otatools
 echo
 echo -e "${YELLOW}Building target-files-package and otatools...${NC}"
@@ -57,7 +65,7 @@ mka target-files-package otatools || handle_error
 
 # Define file paths
 target_files="signed-target_files.zip"
-ota_update_file="${ROM}_${DEVICE}-signed-ota_update.zip"
+ota_update_file="${Build_VERSION}-signed-ota_update.zip"
 
 # Remove Previous target files if they exist
 if [ -e "$target_files" ]; then
@@ -207,10 +215,10 @@ echo
 ota_from_target_files -k ~/.android-certs/releasekey \
     --block --backup=true \
     signed-target_files.zip \
-    $ROM"_"$DEVICE-signed-ota_update.zip || handle_error
+    $Build_VERSION-signed-ota_update.zip || handle_error
 
 # Echo package complete and path of the package
-package_path="$(pwd)/$ROM"_"$DEVICE-signed-ota_update.zip"
+package_path="$(pwd)/$Build_VERSION-signed-ota_update.zip"
 package_size_gb=$(du -h --apparent-size "$package_path" | awk -F'\t' '{print $1}')
 echo
 echo -e "${RED}Package complete: ${package_path} (${package_size_gb})${NC}"
