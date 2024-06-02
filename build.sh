@@ -211,10 +211,9 @@ ota_from_target_files -k ~/.android-certs/releasekey \
 
 # Echo package complete and path of the package
 package_path="$(pwd)/$ROM"_"$DEVICE-signed-ota_update.zip"
-package_size=$(du -h "$package_path" | awk -F'\t' '{print $1}')
 package_size_gb=$(du -h --apparent-size "$package_path" | awk -F'\t' '{print $1}')
 echo
-echo -e "${RED}Package complete: ${package_path} (${package_size} / ${package_size_gb})${NC}"
+echo -e "${RED}Package complete: ${package_path} (${package_size_gb})${NC}"
 echo
 
 # Record the end time for signing
