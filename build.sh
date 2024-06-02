@@ -213,7 +213,7 @@ echo
 echo -e "${YELLOW}Creating OTA from target files...${NC}"
 echo
 ota_from_target_files -k ~/.android-certs/releasekey \
-    --block --backup=true \
+    --max_threads --backup=true --retrofit_dynamic_partitions \
     signed-target_files.zip \
     $Build_VERSION-signed-ota_update.zip || handle_error
 
