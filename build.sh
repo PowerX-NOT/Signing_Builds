@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # lunch ROM_DEVICE-BUILD_TYPE
-ROM="yaap"
+ROM="lineage"
 DEVICE="laurel_sprout"
 BUILD_TYPE="userdebug"
 
