@@ -38,10 +38,10 @@ echo
 if ! lunch ${ROM}_${DEVICE}-${BUILD_TYPE}; then
     echo -e "${RED}Error occurred. Trying alternative lunch command...${NC}"
     # Try an alternative lunch command
-    if ! brunch $DEVICE $BUILD_TYPE; then
+    if ! lunch ${ROM}_${DEVICE}-ap1a-${BUILD_TYPE}; then
         echo -e "${RED}Error occurred. Trying another alternative lunch command...${NC}"
         # Try another alternative lunch command
-        if ! lunch ${ROM}_${DEVICE}-ap1a-${BUILD_TYPE}; then
+        if ! brunch $DEVICE $BUILD_TYPE; then
             handle_error
         fi
     fi
