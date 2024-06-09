@@ -25,9 +25,6 @@ if [ -z "$PRIVATE_KEY" ]; then
     exit 1
 fi
 
-rm -rf ~/$O.pem
-rm -rf ~/.android-certs
-
 # Exit immediately if a command exits with a non-zero status
 set -e
 
@@ -40,7 +37,59 @@ handle_error() {
 }
 trap 'handle_error ${LINENO} "$BASH_COMMAND"' ERR
 
+# Check if the RSA private key and Android certificates directory exist
+if [ -f ~/$O.pem ] && [ -d ~/.android-certs ]; then
+    echo
+    echo -e "${YELLOW}The RSA private key and Android certificates directory already exist.${NC}"
+    read -p "Do you want to regenerate the RSA private key? (y/n): " choice
+    case "$choice" in
+        y|Y )
+            read -p "Do you want to take a backup? (y/n): " backup_choice
+            case "$backup_choice" in
+                y|Y )
+                    echo -e "${GREEN}Taking backup and regenerating RSA private key...${NC}"
+                    # Create a .backup_keys directory if it doesn't exist
+                    mkdir -p ~/.backup_keys
+
+                    # Determine the next backup number
+                    backup_num=1
+                    date_suffix=$(date +%m-%d)
+                    while [ -d ~/.backup_keys/$date_suffix/$backup_num ]; do
+                        backup_num=$((backup_num + 1))
+                    done
+
+                    # Create a backup directory with the determined number
+                    backup_dir=~/.backup_keys/$date_suffix/$backup_num
+                    mkdir -p "$backup_dir"
+
+                    # Backup existing files
+                    mv ~/$O.pem "$backup_dir/"
+                    mv ~/.android-certs "$backup_dir/"
+
+                    # Proceed with key regeneration
+                    ;;
+                n|N )
+                    echo -e "${RED}Skipping backup and regenerating RSA private key.${NC}"
+                    ;;
+                * )
+                    echo -e "${RED}Invalid choice. Aborting.${NC}"
+                    exit 1
+                    ;;
+            esac
+            ;;
+        n|N )
+            echo -e "${RED}Aborting.${NC}"
+            exit 0
+            ;;
+        * )
+            echo -e "${RED}Invalid choice. Aborting.${NC}"
+            exit 1
+            ;;
+    esac
+fi
+
 # Generate a 4096-bit RSA private key using traditional format and place it in the home directory
+echo
 echo -e "${GREEN}Generating a 4096-bit RSA private key in the home directory...${NC}"
 echo
 openssl genrsa -traditional -out ~/$O.pem 4096

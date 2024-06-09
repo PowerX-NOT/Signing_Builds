@@ -17,6 +17,8 @@ chmod +x ./setup.sh
 ```
 This will automatically generate and set up the RSA private key.
 
+No need to regenerate `RSA private keys` and never leak them. You can use the same keys to sign newer builds. Otherwise, a data format will be required if you use new or regenerated keys. And leakage of these keys can compromise the security and authenticity of your builds.
+
 3. Now, copy `build.sh` to your ROM source directory and replace [rom build cmd accordingly](https://github.com/PowerX-NOT/Signing_Builds/blob/main/build.sh#L3) with your ROM build command
 ```
 chmod +x ./build.sh
