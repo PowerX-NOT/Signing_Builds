@@ -1,9 +1,18 @@
 #!/bin/bash
 
-# Define constants
-ROM="lineage"
-DEVICE="laurel_sprout"
-BUILD_TYPE="userdebug"
+# Get user input for ROM, DEVICE, and BUILD_TYPE
+
+echo -e "${YELLOW}Enter ROM (e.g. lineage):${NC}"
+
+read ROM
+
+echo -e "${YELLOW}Enter DEVICE (e.g. laurel_sprout):${NC}"
+
+read DEVICE
+
+echo -e "${YELLOW}Enter BUILD_TYPE (e.g. userdebug):${NC}"
+
+read BUILD_TYPE
 
 # Define colors
 GREEN='\033[0;32m'

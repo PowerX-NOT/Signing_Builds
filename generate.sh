@@ -1,13 +1,27 @@
 #!/bin/bash
 
-# Define constants
-C="IN"
-ST="India"
-L="Bengaluru"
-O="PowerX-NOT"
-OU="PowerX-NOT"
-CN="PowerX-NOT"
-emailAddress="pugalg100@gmail.com"
+# Get user input for constants
+
+echo -e "${YELLOW}Enter Country shortform (e.g. IN):${NC}"
+read C
+
+echo -e "${YELLOW}Enter Country longform (e.g. India):${NC}"
+read ST
+
+echo -e "${YELLOW}Enter Location (e.g. Bengaluru):${NC}"
+read L
+
+echo -e "${YELLOW}Enter Organization (e.g. PowerX-NOT):${NC}"
+read O
+
+echo -e "${YELLOW}Enter Organizational Unit (e.g. PowerX-NOT):${NC}"
+read OU
+
+echo -e "${YELLOW}Enter Common Name (e.g. PowerX-NOT):${NC}"
+read CN
+
+echo -e "${YELLOW}Enter Email Address (e.g. pugalg100@gmail.com):${NC}"
+read emailAddress
 
 # Define colors
 GREEN='\033[0;32m'
