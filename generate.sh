@@ -2,25 +2,25 @@
 
 # Get user input for constants
 
-echo -e "${YELLOW}Enter Country shortform (e.g. IN):${NC}"
+echo -e "${YELLOW}Enter Country shortform (e.g. US):${NC}"
 read C
 
-echo -e "${YELLOW}Enter Country longform (e.g. India):${NC}"
+echo -e "${YELLOW}Enter Country longform (e.g. United States):${NC}"
 read ST
 
-echo -e "${YELLOW}Enter Location (e.g. Bengaluru):${NC}"
+echo -e "${YELLOW}Enter Location (e.g. New York):${NC}"
 read L
 
-echo -e "${YELLOW}Enter Organization (e.g. PowerX-NOT):${NC}"
+echo -e "${YELLOW}Enter Organization (e.g. Example Inc.):${NC}"
 read O
 
-echo -e "${YELLOW}Enter Organizational Unit (e.g. PowerX-NOT):${NC}"
+echo -e "${YELLOW}Enter Organizational Unit (e.g. IT Department):${NC}"
 read OU
 
-echo -e "${YELLOW}Enter Common Name (e.g. PowerX-NOT):${NC}"
+echo -e "${YELLOW}Enter Common Name (e.g. example.com):${NC}"
 read CN
 
-echo -e "${YELLOW}Enter Email Address (e.g. pugalg100@gmail.com):${NC}"
+echo -e "${YELLOW}Enter Email Address (e.g. info@example.com):${NC}"
 read emailAddress
 
 # Define colors
