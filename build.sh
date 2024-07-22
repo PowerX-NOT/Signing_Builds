@@ -78,7 +78,8 @@ fi
 echo
 echo -e "${YELLOW}Signing target files apks...${NC}"
 echo
-sign_target_files_apks -o -d ~/.android-certs \
+sign_target_files_apks -e PrebuiltGmsCoreSc.apk= \
+    -o -d ~/.android-certs \
     --extra_apks AdServicesApk.apk=$HOME/.android-certs/releasekey \
     --extra_apks HalfSheetUX.apk=$HOME/.android-certs/releasekey \
     --extra_apks OsuLogin.apk=$HOME/.android-certs/releasekey \
