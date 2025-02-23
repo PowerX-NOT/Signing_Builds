@@ -11,6 +11,8 @@ RED='\033[0;31m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
+NUM_THREADS=$(nproc)
+
 # Function to handle errors
 handle_error() {
     echo
@@ -205,7 +207,7 @@ echo
 echo -e "${YELLOW}Creating OTA from target files...${NC}"
 echo
 ota_from_target_files -k ~/.android-certs/releasekey \
-    --block --backup=true \
+    --block --backup=true --retrofit_dynamic_partitions --max_threads "$NUM_THREADS" \
     signed-target_files.zip \
     $ROM"_"$DEVICE-signed-ota_update.zip || handle_error
 
